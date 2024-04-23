@@ -14,7 +14,14 @@ spec:
         app: web-server
     spec:
       containers:
-      - name: web-server
-        image: "{{ .Values.web.image }}:{{ .Values.web.tag }}"
-        ports:
-        - containerPort: {{ .Values.web.port }}
+        - name: web-server
+          image: "{{ .Values.web.image }}:{{ .Values.web.tag }}"
+          ports:
+            - containerPort: {{ .Values.web.port }}
+          volumeMounts:
+            - name: postgres-pvc
+              mountPath: /usr/share/nginx/html
+      volumes:
+        - name: postgres-pvc
+          persistentVolumeClaim:
+            claimName: postgres-pvc
