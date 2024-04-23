@@ -1,0 +1,15 @@
+web:
+  image: my-web-server
+  tag: latest
+  port: 5000
+
+database:
+  image: postgres
+  tag: latest
+  port: 5432
+  pvc:
+    accessModes: ["ReadWriteOnce"]
+    storage: "10Gi"
+  user: myuser
+  password: mypassword
+  dbName: mydatabase
