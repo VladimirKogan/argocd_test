@@ -8,4 +8,4 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: "500Mb"
+      storage: {{ .Values.database.pvc.storage }}
