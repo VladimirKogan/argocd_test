@@ -2,7 +2,8 @@ web:
   image: my-web-server
   tag: latest
   port: 5000
-
+global:
+  namespace: somens
 database:
   image: postgres
   tag: latest
