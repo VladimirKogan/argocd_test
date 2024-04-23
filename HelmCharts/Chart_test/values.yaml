@@ -9,7 +9,7 @@ database:
   tag: latest
   port: 5432
   pvc:
-    accessModes: ["ReadWriteOnce"]
+    accessModes: "ReadWriteOnce"
     storage: "10Gi"
   user: myuser
   password: mypassword
