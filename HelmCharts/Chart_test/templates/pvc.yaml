@@ -2,10 +2,10 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: postgres-pvc
-  namespace: {{ .Values.global.namespace }}
+  namespace: somens
 spec:
   accessModes:
-    - {{ .Values.database.pvc.accessModes }}
+    - ReadWriteOnce
   resources:
     requests:
-      storage: {{ .Values.database.pvc.storage }}
+      storage: "500Mb"
