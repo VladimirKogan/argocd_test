@@ -10,7 +10,7 @@ database:
   port: 5432
   pvc:
     accessModes: "ReadWriteOnce"
-    storage: "500Mb"
+    storage: "500Mi"
   user: myuser
   password: mypassword
   dbName: mydatabase
