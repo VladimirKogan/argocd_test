@@ -1,6 +1,6 @@
 web:
-  image: my-web-server
-  tag: latest
+  image: vladimirkogan/clalit
+  tag: 1.0.1
   port: 5000
 global:
   namespace: somens
