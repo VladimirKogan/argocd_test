@@ -1,34 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: postgres
-  namespace: {{ .Values.global.namespace }}
+  name: postgres-db
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: postgres
+      app: postgres-db
   template:
     metadata:
       labels:
-        app: postgres
+        app: postgres-db
     spec:
       containers:
       - name: postgres
-        image: "{{ .Values.database.image }}:{{ .Values.database.tag }}"
-        ports:
-        - containerPort: {{ .Values.database.port }}
+        image: postgres:latest
         env:
         - name: POSTGRES_DB
-          value: "{{ .Values.database.dbName }}"
+          value: {{ .Values.postgres.database }}
         - name: POSTGRES_USER
-          value: "{{ .Values.database.user }}"
+          value: {{ .Values.postgres.username }}
         - name: POSTGRES_PASSWORD
-          value: "{{ .Values.database.password }}"
+          value: {{ .Values.postgres.password }}
         volumeMounts:
         - mountPath: /var/lib/postgresql/data
-          name: postgredb
+          name: postgres-storage
       volumes:
-      - name: postgredb
+      - name: postgres-storage
         persistentVolumeClaim:
           claimName: postgres-pvc
