@@ -16,7 +16,7 @@ spec:
       - name: server
         image: vladimirkogan/clalit:1.0.2
         args:
-        - --port=${SERVER_PORT}
+        - --port=3306
         - --db_host_name=mysql
         - --username=root
         - --password=${MYSQL_ROOT_PASSWORD}
