@@ -10,3 +10,5 @@ postgres:
 webserver:
   image: nginx:latest
   port: 80
+
+namespace: "testns"
