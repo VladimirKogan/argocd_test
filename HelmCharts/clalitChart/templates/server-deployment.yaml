@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: server
-        image: vladimirkogan/clalit:1.0.2
+        image: nginx
         args:
         - --port=${SERVER_PORT}
         - --db_host_name=mysql
