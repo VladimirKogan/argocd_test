@@ -26,4 +26,4 @@ spec:
       volumes:
       - name: templates-volume
         hostPath:
-          path: $(pwd)/templates
+          path: '$(pwd)/templates'
