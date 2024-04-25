@@ -1,0 +1,12 @@
+persistence:
+  size: 500Mi
+
+postgres:
+  username: db_user
+  password: db_password
+  database: db_name
+  host: db_host
+
+webserver:
+  image: nginx:latest
+  port: 80
