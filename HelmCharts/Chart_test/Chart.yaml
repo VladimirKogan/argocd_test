@@ -1,4 +1,4 @@
 apiVersion: v2
-name: my-app
-description: A Helm chart for Kubernetes to deploy a web server and a PostgreSQL database
+name: hello-world-chart
+description: A Helm chart for Kubernetes to deploy a PostgreSQL DB and a simple web server
 version: 0.1.0

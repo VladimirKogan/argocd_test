@@ -1,16 +1,12 @@
-web:
-  image: vladimirkogan/clalit
-  tag: 1.0.1
-  port: 5000
-global:
-  namespace: somens
-database:
-  image: postgres
-  tag: latest
-  port: 5432
-  pvc:
-    accessModes: "ReadWriteOnce"
-    storage: "500Mi"
-  user: myuser
-  password: mypassword
-  dbName: mydatabase
+persistence:
+  size: 500Mi
+
+postgres:
+  username: db_user
+  password: db_password
+  database: db_name
+  host: db_host
+
+webserver:
+  image: nginx:latest
+  port: 80
