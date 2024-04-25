@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: mysql-init
+spec:
+  template:
+    spec:
+      containers:
+      - name: mysql-init
+        image: mysql:5.7
+        command:
+        - mysql
+        - -h
+        - mysql
+        - -u
+        - root
+        - -p${MYSQL_ROOT_PASSWORD}
+        - -e
+        - "CREATE DATABASE IF NOT EXISTS mydb; USE mydb; CREATE TABLE IF NOT EXISTS users(id INT PRIMARY KEY, name VARCHAR(100));"
+      restartPolicy: OnFailure

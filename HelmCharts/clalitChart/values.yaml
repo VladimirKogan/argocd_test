@@ -1,0 +1,4 @@
+mysql:
+  password: strong_password
+server:
+  port: 5555
