@@ -13,7 +13,6 @@ spec:
         app: server
     spec:
       securityContext:
-        runAsNonRoot: true
         seccompProfile:
           type: RuntimeDefault
       containers:
