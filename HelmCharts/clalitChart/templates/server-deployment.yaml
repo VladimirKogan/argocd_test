@@ -12,9 +12,6 @@ spec:
       labels:
         app: server
     spec:
-      securityContext:
-        seccompProfile:
-          type: RuntimeDefault
       containers:
       - name: server
         image: adv4000/k8sphp:latest
