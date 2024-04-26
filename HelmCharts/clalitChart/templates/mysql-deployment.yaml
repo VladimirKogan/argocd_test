@@ -17,10 +17,7 @@ spec:
         image: mysql:latest
         env:
         - name: MYSQL_ROOT_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: mysql
-              key: password
+          value: mysql
         volumeMounts:
         - name: mysql-storage
           mountPath: /var/lib/mysql
