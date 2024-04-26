@@ -15,7 +15,8 @@ spec:
         - mysql
         - -u
         - root
-        - -p password
+        - -p
+        - password
         - -e
         - "CREATE DATABASE IF NOT EXISTS mydb; USE mydb; CREATE TABLE IF NOT EXISTS users(id INT PRIMARY KEY, name VARCHAR(100));"
       restartPolicy: OnFailure
