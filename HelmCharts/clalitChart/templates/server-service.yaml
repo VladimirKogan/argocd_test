@@ -5,7 +5,7 @@ metadata:
   namespace: clalit
 spec:
   selector:
-    app: server
+    app: clalit-web-server
   ports:
     - name: clalit-web-server-listener
       protocol: TCP
