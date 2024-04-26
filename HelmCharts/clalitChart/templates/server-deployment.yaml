@@ -14,6 +14,18 @@ spec:
     spec:
       containers:
       - name: server
-        image: adv4000/k8sphp:latest
-        ports:
-          - containerPort: {{ .Values.server.port}}
+        image: {{ .Values.container.image}}
+        env:
+        - name: db_host_name
+          value: mysql
+        - name: db_user_name
+          value: root
+        - name: db_password
+          value: password
+        volumeMounts:
+        - name: templates-volume
+          mountPath: /templates
+      volumes:
+      - name: templates-volume
+        hostPath:
+          path: /templates

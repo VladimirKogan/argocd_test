@@ -2,3 +2,5 @@ mysql:
   password: strong_password
 server:
   port: 80
+container:
+  image: vladimirkogan/clalit:1.0.2
