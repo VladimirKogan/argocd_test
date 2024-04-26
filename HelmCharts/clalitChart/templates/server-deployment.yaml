@@ -12,24 +12,12 @@ spec:
       labels:
         app: server
     spec:
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
       containers:
       - name: server
-        image: vladimirkogan/clalit:1.0.2
-        env:
-        - name: db_host_name
-          value: mysql
-        - name: db_user_name
-          value: root
-        - name: db_password
-          value: password
-          # valueFrom:
-          #   secretKeyRef:
-          #     name: mysql
-          #     key: password
-        volumeMounts:
-        - name: templates-volume
-          mountPath: /templates
-      volumes:
-      - name: templates-volume
-        hostPath:
-          path: /templates
+        image: adv4000/k8sphp:latest
+        ports:
+          - containerPort: {{ .Values.server.port}}
