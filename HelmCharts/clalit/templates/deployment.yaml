@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{.Values.global.projectName }}-deployment
+  labels:
+    app: {{.Values.global.projectName }}-deployment
+spec:
+  replicas: {{ .Values.container.replicasCounter }}
+  selector:
+    matchLabels:
+      project: {{.Values.global.projectName }}
+  template:
+    metadata:
+      labels:
+        project: {{.Values.global.projectName }}
+    spec:
+      containers:
+      - name: {{.Values.global.projectName }}-web
+        image: {{ .Values.container.image }}
+        imagePullPolicy: Always
+        volumeMounts:
+        - name: templates-volume
+          mountPath: {{ .Values.container.templatesPath }}
+          readOnly: false
+        ports:
+          - containerPort: {{ .Values.env.port }}
+        env:
+          - name: DB_HOST
+            value: {{ .Values.global.projectName}}-db-service
+          - name: DB_NAME
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.dbenv.dbNameSecret.name }}
+                key: {{ .Values.dbenv.dbNameSecret.key }}
+          - name: DB_USER
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.dbenv.dbUserSecret.name }}
+                key: {{ .Values.dbenv.dbUserSecret.key }}
+          - name: DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.dbenv.dbPasswordSecret.name }}
+                key: {{ .Values.dbenv.dbPasswordSecret.key }}
+          - name: TEMPLATES_PATH
+            value: {{ .Values.container.templatesPath }}
+      volumes:
+      -  name: templates-volume
+         persistentVolumeClaim:
+          claimName: {{ .Values.global.projectName}}-templates-pvc

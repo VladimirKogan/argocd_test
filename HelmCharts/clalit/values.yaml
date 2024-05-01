@@ -1,0 +1,22 @@
+global:
+  project: 'mywebapp-project'
+  projectName: 'clalit'
+container:
+  replicasCounter: 1
+  image: vladimirkogan/clalit:python-image-1
+  templatesPath: '/web-deployment/templates'
+env:
+  targetPort: 8080
+  port: 8080
+dbenv:
+  dbImage: mysql:5.7
+  dbPort: 3306
+  dbUserSecret:
+    name: clalit-db-credentials
+    key: user
+  dbNameSecret:
+    name: clalit-db-credentials
+    key: name
+  dbPasswordSecret:
+    name: clalit-db-credentials
+    key: password

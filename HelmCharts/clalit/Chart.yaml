@@ -1,0 +1,6 @@
+apiVersion: v2
+name: app-HelmChart
+type: application
+description: A Helm chart for Kubernetes to deploy a web server and a PostgreSQL database
+version: 0.1.0
+appVersion: "1.0.0"

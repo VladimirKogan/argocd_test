@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.global.projectName}}-db-deployment
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.global.projectName}}-db-deployment
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.global.projectName}}-db-deployment
+    spec:
+      containers:
+      - name: {{ .Values.global.projectName}}-db-container
+        image: {{ .Values.dbenv.dbImage}}
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.dbenv.dbPasswordSecret.name }}
+              key: {{ .Values.dbenv.dbPasswordSecret.key }}
+        volumeMounts:
+        - name: db-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: db-storage
+        persistentVolumeClaim:
+          claimName: {{ .Values.global.projectName}}-db-pvc

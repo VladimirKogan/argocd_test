@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.global.projectName}}-service
+  labels:
+    env: prod
+    owner: Vladik
+spec:
+  selector:
+    project: {{ .Values.global.projectName }}
+  ports:
+    - name: app-listener
+      protocol: TCP
+      port: {{ .Values.env.port}}
+      targetPort: {{ .Values.env.targetPort}}
+  type: LoadBalancer

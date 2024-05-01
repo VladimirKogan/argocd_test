@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.global.projectName}}-db-service
+spec:
+  selector:
+    app: {{ .Values.global.projectName}}-db-deployment
+  ports:
+    - protocol: TCP
+      port: {{ .Values.dbenv.dbPort}}
